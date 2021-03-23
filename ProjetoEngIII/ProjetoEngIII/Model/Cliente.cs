@@ -17,7 +17,7 @@ namespace ProjetoEngIII.Model
 				List<Endereco> enderecos, string nome)
 		{
 
-			//super(documentos);
+			this.documentos = documentos;
 			this.tpCliente = tpCliente;
 			this.enderecos = enderecos;
 			this.nome = nome;

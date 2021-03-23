@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class TipoCliente
+    public class TipoCliente : Tipo
     {
 		public TipoCliente()
 		{
@@ -13,7 +13,8 @@ namespace ProjetoEngIII.Model
 
 		public TipoCliente(string descricao, string nome)
 		{
-			//super(descricao, nome);
+			this.descricao = descricao;
+			this.nome = nome;
 		}
 	}
 }

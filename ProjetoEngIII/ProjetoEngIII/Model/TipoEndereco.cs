@@ -9,12 +9,12 @@ namespace ProjetoEngIII.Model
     {
 		public TipoEndereco()
 		{
-
 		}
 
 		public TipoEndereco(string descricao, string nome)
 		{
-			//super(descricao, nome);
+			this.descricao = descricao;
+			this.nome = nome;
 		}
 
 	}

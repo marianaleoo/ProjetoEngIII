@@ -13,7 +13,8 @@ namespace ProjetoEngIII.Model
 
 		public TipoDocumento(string descricao, string nome)
 		{
-			//super(descricao, nome);
+			this.descricao = descricao;
+			this.nome = nome;
 		}
 	}
 }

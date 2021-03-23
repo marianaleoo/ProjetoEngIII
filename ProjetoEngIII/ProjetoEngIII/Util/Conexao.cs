@@ -9,19 +9,13 @@ namespace ProjetoEngIII.Util
 {
     public class Conexao
     {
-        SqlConnection objConn;
-       
-        string strConnBD = Convert.ToString(ConfigurationSettings.AppSettings["connectionString"].ToString());
-
-        public void AbreConn()
+        public string Connection()
         {
-            objConn = new SqlConnection(strConnBD);
-            objConn.Open();
-        }
+            SqlConnection objConn;
 
-        public void FechaConn()
-        {
-            objConn.Close();
-        }
+            string strConnBD = Convert.ToString(ConfigurationSettings.AppSettings["connectionString"].ToString());
+
+            return strConnBD;
+        }        
     }
 }
