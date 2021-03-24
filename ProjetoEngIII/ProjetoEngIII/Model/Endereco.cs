@@ -1,11 +1,15 @@
-﻿using System;
+﻿using ProjetoEngIII.Util;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class Endereco
+    public class Endereco : EntidadeDominio
     {
 		private int id;
 		private Pessoa pessoa;
@@ -15,8 +19,9 @@ namespace ProjetoEngIII.Model
 		private string complemento;
 		private Cidade cidade;
 		private TipoEndereco tpEndereco;
+        private Conexao conn;
 
-		public Endereco() { }
+        public Endereco() { }
 
 		public Endereco(string logradouro, string numero, string cep,
 				string complemento, Cidade cidade, TipoEndereco tpEndereco)
@@ -110,5 +115,41 @@ namespace ProjetoEngIII.Model
 		{
 			this.cidade = cidade;
 		}
-	}
+
+        public void Salvar()
+        {
+            var teste = conn.Connection();
+            var objConn = new SqlConnection(teste);
+            objConn.Open();
+            var objComando = new SqlCommand();
+            objComando.Connection = objConn;
+
+            try
+            {
+
+                StringBuilder strSQL = new StringBuilder();
+
+                strSQL.Append("INSERT INTO tb_endereco(cli_id, tpend_id, cidade, estado");
+                strSQL.Append("VALUES (@cli_id, @tpend_id, @cidade,@estado)");
+
+                objComando.CommandText = strSQL.ToString();
+                objComando.Parameters.AddWithValue("@cli_id", pessoa.getId());
+                objComando.Parameters.AddWithValue("@tpend_id", tpEndereco.GetId());
+                objComando.Parameters.AddWithValue("@cidade", cidade.GetDescricao());
+                objComando.Parameters.AddWithValue("@estado", cidade.GetEstado().getDescricao());
+               
+                objConn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                if (objConn.State == ConnectionState.Open)
+                {
+                    objConn.Close();
+                }
+
+                throw new Exception("Erro ao inserir registro " + ex.Message);
+            }
+        }
+    }
 }

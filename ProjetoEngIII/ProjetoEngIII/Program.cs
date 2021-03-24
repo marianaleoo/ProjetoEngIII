@@ -10,8 +10,7 @@ namespace ProjetoEngIII
     {
         public static void Main(String[] args)
         {
-            Cliente cliente = new Cliente("Mariana");
-            cliente.Salvar();
+          
         }
     }
 }

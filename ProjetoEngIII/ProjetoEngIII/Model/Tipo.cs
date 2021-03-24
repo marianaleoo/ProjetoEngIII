@@ -9,7 +9,7 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-	public abstract class Tipo
+	public abstract class Tipo : EntidadeDominio
 	{
 		protected int id;
 		protected string nome;

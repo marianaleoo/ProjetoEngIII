@@ -52,7 +52,7 @@ namespace ProjetoEngIII.Model
 
                 objComando.CommandText = strSQL.ToString();
                 objComando.Parameters.AddWithValue("@id_cli", cliente.getId());
-                //objComando.Parameters.AddWithValue("@nome", cliente.GetDependente());
+                objComando.Parameters.AddWithValue("@nome", cliente.GetDependente());
 
                 if (objComando.ExecuteNonQuery() < 1)
                 {

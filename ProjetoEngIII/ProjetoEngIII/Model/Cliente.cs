@@ -11,49 +11,52 @@ namespace ProjetoEngIII.Model
 {
     public class Cliente : Pessoa
     {
-        //private TipoCliente tpCliente;
-        //private List<Endereco> enderecos;
-        //private List<Dependente> dependentes;
-        //private Endereco endereco;
+        private TipoCliente tpCliente;
+        private List<Endereco> enderecos;
+        private List<Dependente> dependentes;
         private string nome;
+        private decimal credito;
         private Conexao conn;
 
         public Cliente() { }
 
-        public Cliente( string nome)
+        public Cliente(TipoCliente tpCliente, List<Endereco> enderecos, List<Dependente> dependentes, string nome)
         {
+            this.tpCliente = tpCliente;
+            this.enderecos = enderecos;
+            this.dependentes = dependentes;
             this.nome = nome;
 
         }
 
-        //public TipoCliente GetTpCliente()
-        //{
-        //    return tpCliente;
-        //}
+        public TipoCliente GetTpCliente()
+        {
+            return tpCliente;
+        }
 
-        //public void SetTpCliente(TipoCliente tpCliente)
-        //{
-        //    this.tpCliente = tpCliente;
-        //}
+        public void SetTpCliente(TipoCliente tpCliente)
+        {
+            this.tpCliente = tpCliente;
+        }
 
-        //public List<Endereco> GetEnderecos()
-        //{
-        //    return enderecos;
-        //}
+        public List<Endereco> GetEnderecos()
+        {
+            return enderecos;
+        }
 
-        //public void SetEnderecos(List<Endereco> enderecos)
-        //{
-        //    this.enderecos = enderecos;
-        //}
+        public void SetEnderecos(List<Endereco> enderecos)
+        {
+            this.enderecos = enderecos;
+        }
 
-        //public void AddEndereco(Endereco endereco)
-        //{
-        //    if (enderecos == null)
-        //    {
-        //        enderecos = new List<Endereco>();
-        //    }
-        //    enderecos.Add(endereco);
-        //}
+        public void AddEndereco(Endereco endereco)
+        {
+            if (enderecos == null)
+            {
+                enderecos = new List<Endereco>();
+            }
+            enderecos.Add(endereco);
+        }
 
         public string GetNome()
         {
@@ -66,19 +69,19 @@ namespace ProjetoEngIII.Model
             this.nome = nome;
         }
 
-        //public List<Dependente> GetDependente()
-        //{
-        //    return dependentes;
-        //}
+        public List<Dependente> GetDependente()
+        {
+            return dependentes;
+        }
 
-        //public void AddDependente(Dependente dependente)
-        //{
-        //    if (dependentes == null)
-        //    {
-        //         dependentes = new List<Dependente>();
-        //    }
-        //    dependentes.Add(dependente);
-        //}
+        public void AddDependente(Dependente dependente)
+        {
+            if (dependentes == null)
+            {
+                dependentes = new List<Dependente>();
+            }
+            dependentes.Add(dependente);
+        }
         public void Salvar()
         {
             var teste = conn.Connection();
@@ -97,7 +100,7 @@ namespace ProjetoEngIII.Model
 
                 objComando.CommandText = strSQL.ToString();
                 objComando.Parameters.AddWithValue("@nome", nome);
- 
+
 
                 if (objComando.ExecuteNonQuery() < 1)
                 {
@@ -117,6 +120,45 @@ namespace ProjetoEngIII.Model
             }
         }
 
+        public bool ValidarDependente(Cliente cliente)
+        {
+            if (cliente.dependentes.Count > 2)
+            {
+                return false;
+
+            }
+            else
+            {
+                return true;
+
+            }
+        }
+
+        public bool ValidarCPF(Documento documento)
+        {
+            if (documento.GetCodigo().Length > 11)
+            {
+                return false;
+            }
+            else
+            {
+
+                return true;
+            }
+        }
+
+        public bool ValidarCredito(Cliente cliente)
+        {
+            if(cliente.credito < 1000)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+            
 
     }
 }

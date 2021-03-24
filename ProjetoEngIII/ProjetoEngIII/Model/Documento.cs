@@ -9,7 +9,7 @@ using ProjetoEngIII.Util;
 
 namespace ProjetoEngIII.Model
 {
-    public class Documento
+    public class Documento : EntidadeDominio
     {
 		private int id;
 		private string codigo;

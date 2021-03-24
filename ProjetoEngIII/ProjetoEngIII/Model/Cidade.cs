@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class Cidade
+    public class Cidade : EntidadeDominio
     {
 		private string descricao;
 		private Estado estado;
