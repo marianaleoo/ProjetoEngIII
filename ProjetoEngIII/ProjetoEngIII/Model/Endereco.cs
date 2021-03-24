@@ -31,82 +31,82 @@ namespace ProjetoEngIII.Model
 
 
 
-		public int getId()
+		public int GetId()
 		{
 			return id;
 		}
 
-		public void setId(int id)
+		public void SetId(int id)
 		{
 			this.id = id;
 		}
 
-		public Pessoa getPessoa()
+		public Pessoa GetPessoa()
 		{
 			return pessoa;
 		}
 
-		public void setPessoa(Pessoa pessoa)
+		public void SetPessoa(Pessoa pessoa)
 		{
 			this.pessoa = pessoa;
 		}
 
-		public TipoEndereco getTpEndereco()
+		public TipoEndereco GetTpEndereco()
 		{
 			return tpEndereco;
 		}
 
-		public void setTpEndereco(TipoEndereco tpEndereco)
+		public void SetTpEndereco(TipoEndereco tpEndereco)
 		{
 			this.tpEndereco = tpEndereco;
 		}
 
-		public string getLogradouro()
+		public string GetLogradouro()
 		{
 			return logradouro;
 		}
 
-		public void setLogradouro(string logradouro)
+		public void SetLogradouro(string logradouro)
 		{
 			this.logradouro = logradouro;
 		}
 
-		public string getNumero()
+		public string GetNumero()
 		{
 			return numero;
 		}
 
-		public void setNumero(string numero)
+		public void SetNumero(string numero)
 		{
 			this.numero = numero;
 		}
 
-		public string getCep()
+		public string GetCep()
 		{
 			return cep;
 		}
 
-		public void setCep(string cep)
+		public void SetCep(string cep)
 		{
 			this.cep = cep;
 		}
 
-		public string getComplemento()
+		public string GetComplemento()
 		{
 			return complemento;
 		}
 
-		public void setComplemento(string complemento)
+		public void SetComplemento(string complemento)
 		{
 			this.complemento = complemento;
 		}
 
-		public Cidade getCidade()
+		public Cidade GetCidade()
 		{
 			return cidade;
 		}
 
-		public void setCidade(Cidade cidade)
+		public void SetCidade(Cidade cidade)
 		{
 			this.cidade = cidade;
 		}

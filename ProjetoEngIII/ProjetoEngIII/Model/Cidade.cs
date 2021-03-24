@@ -18,22 +18,22 @@ namespace ProjetoEngIII.Model
 			this.estado = estado;
 		}
 
-		public string getDescricao()
+		public string GetDescricao()
 		{
 			return descricao;
 		}
 
-		public void setDescricao(string descricao)
+		public void SetDescricao(string descricao)
 		{
 			this.descricao = descricao;
 		}
 
-		public Estado getEstado()
+		public Estado GetEstado()
 		{
 			return estado;
 		}
 
-		public void setEstado(Estado estado)
+		public void SetEstado(Estado estado)
 		{
 			this.estado = estado;
 		}

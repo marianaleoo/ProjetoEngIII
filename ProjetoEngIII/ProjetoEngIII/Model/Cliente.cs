@@ -1,66 +1,122 @@
-﻿using System;
+﻿using ProjetoEngIII.Util;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace ProjetoEngIII.Model
 {
     public class Cliente : Pessoa
     {
-		private TipoCliente tpCliente;
-		private List<Endereco> enderecos;
-		private string nome;
+        //private TipoCliente tpCliente;
+        //private List<Endereco> enderecos;
+        //private List<Dependente> dependentes;
+        //private Endereco endereco;
+        private string nome;
+        private Conexao conn;
 
-		public Cliente() { }
+        public Cliente() { }
 
-		public Cliente(List<Documento> documentos, TipoCliente tpCliente,
-				List<Endereco> enderecos, string nome)
-		{
+        public Cliente( string nome)
+        {
+            this.nome = nome;
 
-			this.documentos = documentos;
-			this.tpCliente = tpCliente;
-			this.enderecos = enderecos;
-			this.nome = nome;
-		}
+        }
 
-		public TipoCliente getTpCliente()
-		{
-			return tpCliente;
-		}
+        //public TipoCliente GetTpCliente()
+        //{
+        //    return tpCliente;
+        //}
 
-		public void setTpCliente(TipoCliente tpCliente)
-		{
-			this.tpCliente = tpCliente;
-		}
+        //public void SetTpCliente(TipoCliente tpCliente)
+        //{
+        //    this.tpCliente = tpCliente;
+        //}
 
-		public List<Endereco> getEnderecos()
-		{
-			return enderecos;
-		}
+        //public List<Endereco> GetEnderecos()
+        //{
+        //    return enderecos;
+        //}
 
-		public void setEnderecos(List<Endereco> enderecos)
-		{
-			this.enderecos = enderecos;
-		}
+        //public void SetEnderecos(List<Endereco> enderecos)
+        //{
+        //    this.enderecos = enderecos;
+        //}
 
-		public void addEndereco(Endereco endereco)
-		{
-			if (enderecos == null)
-			{
-				enderecos = new List<Endereco>();
-			}
-			enderecos.Add(endereco);
-		}
+        //public void AddEndereco(Endereco endereco)
+        //{
+        //    if (enderecos == null)
+        //    {
+        //        enderecos = new List<Endereco>();
+        //    }
+        //    enderecos.Add(endereco);
+        //}
 
-		public string getNome()
-		{
+        public string GetNome()
+        {
 
-			return nome;
-		}
+            return nome;
+        }
 
-		public void setNome(string nome)
-		{
-			this.nome = nome;
-		}
-	}
+        public void SetNome(string nome)
+        {
+            this.nome = nome;
+        }
+
+        //public List<Dependente> GetDependente()
+        //{
+        //    return dependentes;
+        //}
+
+        //public void AddDependente(Dependente dependente)
+        //{
+        //    if (dependentes == null)
+        //    {
+        //         dependentes = new List<Dependente>();
+        //    }
+        //    dependentes.Add(dependente);
+        //}
+        public void Salvar()
+        {
+            var teste = conn.Connection();
+            var objConn = new SqlConnection(teste);
+            objConn.Open();
+            var objComando = new SqlCommand();
+            objComando.Connection = objConn;
+
+            try
+            {
+
+                StringBuilder strSQL = new StringBuilder();
+
+                strSQL.Append("INSERT INTO tb_cliente(nome");
+                strSQL.Append("VALUES (@nome)");
+
+                objComando.CommandText = strSQL.ToString();
+                objComando.Parameters.AddWithValue("@nome", nome);
+ 
+
+                if (objComando.ExecuteNonQuery() < 1)
+                {
+                    throw new Exception("Erro ao inserir registro");
+                }
+                objConn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                if (objConn.State == ConnectionState.Open)
+                {
+                    objConn.Close();
+                }
+
+                throw new Exception("Erro ao inserir registro " + ex.Message);
+            }
+        }
+
+
+    }
 }

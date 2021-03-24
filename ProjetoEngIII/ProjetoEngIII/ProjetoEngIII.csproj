@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Model\Cidade.cs" />
     <Compile Include="Model\Cliente.cs" />
+    <Compile Include="Model\Dependente.cs" />
     <Compile Include="Model\Documento.cs" />
     <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\Estado.cs" />
@@ -77,6 +78,8 @@
     <Compile Include="Model\TipoCliente.cs" />
     <Compile Include="Model\TipoDocumento.cs" />
     <Compile Include="Model\TipoEndereco.cs" />
+    <Compile Include="Model\TipoParentesco.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Conexao.cs" />
   </ItemGroup>

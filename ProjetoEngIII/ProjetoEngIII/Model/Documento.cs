@@ -27,41 +27,41 @@ namespace ProjetoEngIII.Model
 			this.tpDocumento = tpDocumento;
 		}
 
-		public TipoDocumento getTpDocumento()
+		public TipoDocumento GetTpDocumento()
 		{
 			return tpDocumento;
 		}
-		public void setTpDocumento(TipoDocumento tpDocumento)
+		public void SetTpDocumento(TipoDocumento tpDocumento)
 		{
 			this.tpDocumento = tpDocumento;
 		}
-		public string getCodigo()
+		public string GetCodigo()
 		{
 			return codigo;
 		}
-		public void setCodigo(string codigo)
+		public void SetCodigo(string codigo)
 		{
 			this.codigo = codigo;
 		}
-		public DateTime getValidade()
+		public DateTime GetValidade()
 		{
 			return validade;
 		}
-		public void setValidade(DateTime validade)
+		public void SetValidade(DateTime validade)
 		{
 			this.validade = validade;
 		}
-		public Pessoa getPessoa()
+		public Pessoa GetPessoa()
 		{
 			return pessoa;
 		}
 
-		public void setPessoa(Pessoa pessoa)
+		public void SetPessoa(Pessoa pessoa)
 		{
 			this.pessoa = pessoa;
 		}
 
-        public void salvar()
+        public void Salvar()
         {
             var teste = conn.Connection();
             var objConn = new SqlConnection(teste);
@@ -71,7 +71,7 @@ namespace ProjetoEngIII.Model
             
             try
             {  
-                tpDocumento.salvar();
+                tpDocumento.Salvar();
 
                 StringBuilder strSQL = new StringBuilder();
 
@@ -80,7 +80,7 @@ namespace ProjetoEngIII.Model
 
                 objComando.CommandText = strSQL.ToString();                
                 objComando.Parameters.AddWithValue("@cli_id", pessoa.getId());
-                objComando.Parameters.AddWithValue("@tpdoc_id", tpDocumento.getId());
+                objComando.Parameters.AddWithValue("@tpdoc_id", tpDocumento.GetId());
                 objComando.Parameters.AddWithValue("@tpdoc_id", codigo);
                 objComando.Parameters.AddWithValue("@validade", validade);
 				if (objComando.ExecuteNonQuery() < 1)

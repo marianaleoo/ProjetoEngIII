@@ -26,34 +26,34 @@ namespace ProjetoEngIII.Model
 		}
 
 
-		public int getId()
+		public int GetId()
 		{
 			return id;
 		}
 
-		public void setId(int id)
+		public void SetId(int id)
 		{
 			this.id = id;
 		}
 
-		public string getDescricao()
+		public string GetDescricao()
 		{
 			return descricao;
 		}
-		public void setDescricao(string descricao)
+		public void SetDescricao(string descricao)
 		{
 			this.descricao = descricao;
 		}
-		public string getNome()
+		public string GetNome()
 		{
 			return nome;
 		}
-		public void setNome(string nome)
+		public void SetNome(string nome)
 		{
 			this.nome = nome;
 		}
 
-		public void salvar()
+		public void Salvar()
 		{
 			var teste = conn.Connection();
 			var objConn = new SqlConnection(teste);
