@@ -81,7 +81,7 @@ namespace ProjetoEngIII.Model
                 objComando.CommandText = strSQL.ToString();                
                 objComando.Parameters.AddWithValue("@cli_id", pessoa.getId());
                 objComando.Parameters.AddWithValue("@tpdoc_id", tpDocumento.GetId());
-                objComando.Parameters.AddWithValue("@tpdoc_id", codigo);
+                objComando.Parameters.AddWithValue("@codigo", codigo);
                 objComando.Parameters.AddWithValue("@validade", validade);
 				if (objComando.ExecuteNonQuery() < 1)
 				{

@@ -64,11 +64,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cliente.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cliente.aspx.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cliente.aspx.designer.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Cidade.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Dependente.cs" />
