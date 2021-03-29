@@ -10,8 +10,7 @@ using ProjetoEngIII.Util;
 namespace ProjetoEngIII.Model
 {
     public class Documento : EntidadeDominio
-    {
-		private int id;
+    {		
 		private string codigo;
 		private DateTime validade;
 		private TipoDocumento tpDocumento;
@@ -79,7 +78,7 @@ namespace ProjetoEngIII.Model
                 strSQL.Append("validade) VALUES (@cli_id,@tpdoc_id,@codigo,@validade)");
 
                 objComando.CommandText = strSQL.ToString();                
-                objComando.Parameters.AddWithValue("@cli_id", pessoa.getId());
+                objComando.Parameters.AddWithValue("@cli_id", pessoa.GetId());
                 objComando.Parameters.AddWithValue("@tpdoc_id", tpDocumento.GetId());
                 objComando.Parameters.AddWithValue("@codigo", codigo);
                 objComando.Parameters.AddWithValue("@validade", validade);

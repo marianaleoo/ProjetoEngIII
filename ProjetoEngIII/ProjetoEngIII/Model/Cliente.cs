@@ -11,52 +11,44 @@ namespace ProjetoEngIII.Model
 {
     public class Cliente : Pessoa
     {
-        private TipoCliente tpCliente;
-        private List<Endereco> enderecos;
-        private List<Dependente> dependentes;
+        private Pessoa pessoa;
+        private Endereco endereco;
+        private Dependente dependente;
         private string nome;
         private decimal credito;
+        private string cpf;
         private Conexao conn;
 
         public Cliente() { }
 
-        public Cliente(TipoCliente tpCliente, List<Endereco> enderecos, List<Dependente> dependentes, string nome)
-        {
-            this.tpCliente = tpCliente;
-            this.enderecos = enderecos;
-            this.dependentes = dependentes;
+        public Cliente(Endereco endereco, Dependente dependente, string nome, decimal credito, string cpf)
+        {            
+            this.endereco = endereco;
+            this.dependente = dependente;
             this.nome = nome;
+            this.credito = credito;
+            this.cpf = cpf;
 
         }
 
-        public TipoCliente GetTpCliente()
+        public Endereco GetEndereco()
         {
-            return tpCliente;
+            return endereco;
         }
 
-        public void SetTpCliente(TipoCliente tpCliente)
+        public void SetEndereco(Endereco endereco)
         {
-            this.tpCliente = tpCliente;
+            this.endereco = endereco;
         }
 
-        public List<Endereco> GetEnderecos()
-        {
-            return enderecos;
-        }
-
-        public void SetEnderecos(List<Endereco> enderecos)
-        {
-            this.enderecos = enderecos;
-        }
-
-        public void AddEndereco(Endereco endereco)
-        {
-            if (enderecos == null)
-            {
-                enderecos = new List<Endereco>();
-            }
-            enderecos.Add(endereco);
-        }
+        //public void AddEndereco(Endereco endereco)
+        //{
+        //    if (enderecos == null)
+        //    {
+        //        enderecos = new List<Endereco>();
+        //    }
+        //    enderecos.Add(endereco);
+        //}
 
         public string GetNome()
         {
@@ -69,19 +61,52 @@ namespace ProjetoEngIII.Model
             this.nome = nome;
         }
 
-        public List<Dependente> GetDependente()
+        public string GetCPF()
         {
-            return dependentes;
+
+            return cpf;
         }
 
-        public void AddDependente(Dependente dependente)
+        public void SetCPF(string cpf)
         {
-            if (dependentes == null)
-            {
-                dependentes = new List<Dependente>();
-            }
-            dependentes.Add(dependente);
+            this.cpf = cpf;
         }
+
+        public decimal GetCredito()
+        {
+
+            return credito;
+        }
+
+        public void SetCredito(decimal credito)
+        {
+            this.credito = credito;
+        }
+
+        public Dependente GetDependente()
+        {
+            return dependente;
+        }
+
+        //public void AddDependente(Dependente dependente)
+        //{
+        //    if (dependentes == null)
+        //    {
+        //        dependentes = new List<Dependente>();
+        //    }
+        //    dependentes.Add(dependente);
+        //}
+
+        public Pessoa GetPessoa()
+        {
+            return pessoa;
+        }
+
+        public void SetPessoa(Pessoa pessoa)
+        {
+            this.pessoa = pessoa;
+        }
+
         public void Salvar()
         {
             var teste = conn.Connection();
@@ -95,10 +120,14 @@ namespace ProjetoEngIII.Model
 
                 StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_cliente(nome");
-                strSQL.Append("VALUES (@nome)");
+                strSQL.Append("INSERT INTO tb_cliente(end_id, dt_cadastro, cpf, credito, nome");
+                strSQL.Append("VALUES (@end_id, @dt_cadastro, @cpf, @credito, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
+                objComando.Parameters.AddWithValue("@end_id", endereco.GetId());
+                objComando.Parameters.AddWithValue("@dt_cadastro", pessoa.GetDataCadastro());
+                objComando.Parameters.AddWithValue("@cpf", cpf);
+                objComando.Parameters.AddWithValue("@credito", credito);
                 objComando.Parameters.AddWithValue("@nome", nome);
 
 
@@ -120,19 +149,19 @@ namespace ProjetoEngIII.Model
             }
         }
 
-        public bool ValidarDependente(Cliente cliente)
-        {
-            if (cliente.dependentes.Count > 2)
-            {
-                return false;
+        //public bool ValidarDependente(Cliente cliente)
+        //{
+        //    if (cliente.dependentes.Count > 2)
+        //    {
+        //        return false;
 
-            }
-            else
-            {
-                return true;
+        //    }
+        //    else
+        //    {
+        //        return true;
 
-            }
-        }
+        //    }
+        //}
 
         public bool ValidarCPF(Documento documento)
         {

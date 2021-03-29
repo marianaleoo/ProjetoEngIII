@@ -5,24 +5,12 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-	public abstract class Pessoa
+	public abstract class Pessoa : EntidadeDominio
 	{
-		protected int id;
-
 		protected List<Documento> documentos;
 
 		public Pessoa()
 		{
-		}
-
-		public int getId()
-		{
-			return id;
-		}
-
-		public void setId(int id)
-		{
-			this.id = id;
 		}
 
 		public Pessoa(List<Documento> documentos)

@@ -10,8 +10,7 @@ using System.Web;
 namespace ProjetoEngIII.Model
 {
 	public abstract class Tipo : EntidadeDominio
-	{
-		protected int id;
+	{		
 		protected string nome;
 		protected string descricao;
 		private Conexao conn;
@@ -23,17 +22,6 @@ namespace ProjetoEngIII.Model
 		{
 			this.descricao = descricao;
 			this.nome = nome;
-		}
-
-
-		public int GetId()
-		{
-			return id;
-		}
-
-		public void SetId(int id)
-		{
-			this.id = id;
 		}
 
 		public string GetDescricao()

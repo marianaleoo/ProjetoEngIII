@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class Estado
+    public class Estado : EntidadeDominio
     {
 		private string descricao;
 

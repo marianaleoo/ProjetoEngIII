@@ -10,8 +10,7 @@ using System.Web;
 namespace ProjetoEngIII.Model
 {
     public class Endereco : EntidadeDominio
-    {
-		private int id;
+    {		
 		private Pessoa pessoa;
 		private string logradouro;
 		private string numero;
@@ -32,18 +31,6 @@ namespace ProjetoEngIII.Model
 			this.complemento = complemento;
 			this.cidade = cidade;
 			this.tpEndereco = tpEndereco;
-		}
-
-
-
-		public int GetId()
-		{
-			return id;
-		}
-
-		public void SetId(int id)
-		{
-			this.id = id;
 		}
 
 		public Pessoa GetPessoa()
@@ -130,15 +117,18 @@ namespace ProjetoEngIII.Model
                 StringBuilder strSQL = new StringBuilder();
 
                 strSQL.Append("INSERT INTO tb_endereco(cli_id, tpend_id, cidade, estado");
-                strSQL.Append("VALUES (@cli_id, @tpend_id, @cidade,@estado)");
+                strSQL.Append("logradouro, numero, cep) VALUES (@cli_id, @tpend_id, @cidade, @estado, @logradouro, @numero, @cep)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", pessoa.getId());
+                objComando.Parameters.AddWithValue("@cli_id", pessoa.GetId());
                 objComando.Parameters.AddWithValue("@tpend_id", tpEndereco.GetId());
                 objComando.Parameters.AddWithValue("@cidade", cidade.GetDescricao());
                 objComando.Parameters.AddWithValue("@estado", cidade.GetEstado().getDescricao());
-               
-                objConn.Close();
+				objComando.Parameters.AddWithValue("@logradouro", logradouro);
+				objComando.Parameters.AddWithValue("@numero", numero);
+				objComando.Parameters.AddWithValue("@cep", cep);
+
+				objConn.Close();
 
             }
             catch (Exception ex)
