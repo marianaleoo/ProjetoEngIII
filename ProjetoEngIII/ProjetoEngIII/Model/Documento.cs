@@ -70,7 +70,7 @@ namespace ProjetoEngIII.Model
             
             try
             {  
-                tpDocumento.Salvar();
+                tpDocumento.SalvarTipoDocumento();
 
                 StringBuilder strSQL = new StringBuilder();
 

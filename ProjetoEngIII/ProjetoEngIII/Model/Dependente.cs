@@ -14,15 +14,26 @@ namespace ProjetoEngIII.Model
         private Pessoa pessoa;
         private Cliente cliente;
         private Conexao conn;
+        private TipoParentesco tpParentesco;
+        private String nome;
 
-        public Dependente()
+        public Dependente() { }
+
+        public Dependente(string nome, TipoParentesco tpParentesco)
         {
-
+            this.nome = nome;
+            this.tpParentesco = tpParentesco;
         }
 
-        public Dependente(string nome)
+        public string GetNome()
         {
 
+            return nome;
+        }
+
+        public void SetNome(string nome)
+        {
+            this.nome = nome;
         }
 
         public Pessoa GetPessoa()
@@ -35,6 +46,17 @@ namespace ProjetoEngIII.Model
             this.pessoa = pessoa;
         }
 
+        public TipoParentesco GetTpParentesco()
+        {
+            return tpParentesco;
+        }
+
+        public void SetTpParentesco(TipoParentesco tpParentesco)
+        {
+            this.tpParentesco = tpParentesco;
+        }
+
+
         public void Salvar()
         {
             var teste = conn.Connection();
@@ -45,14 +67,16 @@ namespace ProjetoEngIII.Model
 
             try
             {
+                tpParentesco.SalvarTipoParentesco();
+
                 StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_dependente(id_cli, nome");
-                strSQL.Append("VALUES (@id_cli, @nome)");
+                strSQL.Append("INSERT INTO tb_dependente(id_tpparent, nome");
+                strSQL.Append("VALUES (@id_tpparent, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@id_cli", cliente.getId());
-                objComando.Parameters.AddWithValue("@nome", cliente.GetDependente());
+                objComando.Parameters.AddWithValue("@id_tpparent", tpParentesco.GetId());
+                objComando.Parameters.AddWithValue("@nome", GetNome());
 
                 if (objComando.ExecuteNonQuery() < 1)
                 {

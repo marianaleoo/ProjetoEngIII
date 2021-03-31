@@ -113,6 +113,7 @@ namespace ProjetoEngIII.Model
 
             try
             {
+                tpEndereco.SalvarTipoEndereco();
 
                 StringBuilder strSQL = new StringBuilder();
 

@@ -12,43 +12,45 @@ namespace ProjetoEngIII.Model
     public class Cliente : Pessoa
     {
         private Pessoa pessoa;
-        private Endereco endereco;
-        private Dependente dependente;
+        private List<Endereco> enderecos;
+        private List<Dependente> dependentes;
         private string nome;
         private decimal credito;
         private string cpf;
         private Conexao conn;
+        private TipoCliente tpCliente;
 
         public Cliente() { }
 
-        public Cliente(Endereco endereco, Dependente dependente, string nome, decimal credito, string cpf)
+        public Cliente(List<Endereco> enderecos, List<Dependente> dependentes, TipoCliente tpCliente, string nome, decimal credito, string cpf)
         {            
-            this.endereco = endereco;
-            this.dependente = dependente;
+            this.enderecos = enderecos;
+            this.dependentes = dependentes;
             this.nome = nome;
             this.credito = credito;
             this.cpf = cpf;
+            this.tpCliente = tpCliente;
 
         }
 
-        public Endereco GetEndereco()
+        public List<Endereco> GetEndereco()
         {
-            return endereco;
+            return enderecos;
         }
 
-        public void SetEndereco(Endereco endereco)
+        public void SetEndereco(List<Endereco> enderecos)
         {
-            this.endereco = endereco;
+            this.enderecos = enderecos;
         }
 
-        //public void AddEndereco(Endereco endereco)
-        //{
-        //    if (enderecos == null)
-        //    {
-        //        enderecos = new List<Endereco>();
-        //    }
-        //    enderecos.Add(endereco);
-        //}
+        public void AddEndereco(Endereco endereco)
+        {
+            if (enderecos == null)
+            {
+                enderecos = new List<Endereco>();
+            }
+            enderecos.Add(endereco);
+        }
 
         public string GetNome()
         {
@@ -83,19 +85,29 @@ namespace ProjetoEngIII.Model
             this.credito = credito;
         }
 
-        public Dependente GetDependente()
+        public List<Dependente> GetDependente()
         {
-            return dependente;
+            return dependentes;
         }
 
-        //public void AddDependente(Dependente dependente)
-        //{
-        //    if (dependentes == null)
-        //    {
-        //        dependentes = new List<Dependente>();
-        //    }
-        //    dependentes.Add(dependente);
-        //}
+        public void AddDependente(Dependente dependente)
+        {
+            if (dependentes == null)
+            {
+                dependentes = new List<Dependente>();
+            }
+            dependentes.Add(dependente);
+        }
+
+        public TipoCliente GetTipoCliente()
+        {
+            return tpCliente;
+        }
+
+        public void SetTipoCliente(TipoCliente tpCliente)
+        {
+            this.tpCliente = tpCliente;
+        }
 
         public Pessoa GetPessoa()
         {
@@ -117,19 +129,36 @@ namespace ProjetoEngIII.Model
 
             try
             {
+                tpCliente.SalvarTipoCliente();
 
                 StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_cliente(end_id, dt_cadastro, cpf, credito, nome");
-                strSQL.Append("VALUES (@end_id, @dt_cadastro, @cpf, @credito, @nome)");
+                strSQL.Append("INSERT INTO tb_cliente(dt_cadastro, cpf, credito, nome");
+                strSQL.Append("VALUES (@dt_cadastro, @cpf, @credito, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@end_id", endereco.GetId());
                 objComando.Parameters.AddWithValue("@dt_cadastro", pessoa.GetDataCadastro());
                 objComando.Parameters.AddWithValue("@cpf", cpf);
                 objComando.Parameters.AddWithValue("@credito", credito);
                 objComando.Parameters.AddWithValue("@nome", nome);
 
+                foreach (var item in dependentes)
+                {
+                    item.SetPessoa(this);
+                    item.Salvar();
+                }
+
+                foreach (var item in enderecos)
+                {
+                    item.SetPessoa(this);
+                    item.Salvar();
+                }
+
+                foreach (var item in documentos)
+                {
+                    item.SetPessoa(this);
+                    item.Salvar();
+                }
 
                 if (objComando.ExecuteNonQuery() < 1)
                 {
