@@ -11,7 +11,7 @@ namespace ProjetoEngIII.Model
 {
     public class Cliente : Pessoa
     {
-        private Pessoa pessoa;
+        
         private List<Endereco> enderecos;
         private List<Dependente> dependentes;
         private string nome;
@@ -20,17 +20,19 @@ namespace ProjetoEngIII.Model
         private Conexao conn;
         private TipoCliente tpCliente;
 
-        public Cliente() { }
+        public Cliente()
+        {
 
-        public Cliente(List<Endereco> enderecos, List<Dependente> dependentes, TipoCliente tpCliente, string nome, decimal credito, string cpf)
-        {            
+        }
+
+        public Cliente(List<Endereco> enderecos, List<Dependente> dependentes, string nome, decimal credito, string cpf, TipoCliente tpCliente)
+        {
             this.enderecos = enderecos;
             this.dependentes = dependentes;
             this.nome = nome;
             this.credito = credito;
             this.cpf = cpf;
             this.tpCliente = tpCliente;
-
         }
 
         public List<Endereco> GetEndereco()
@@ -109,15 +111,6 @@ namespace ProjetoEngIII.Model
             this.tpCliente = tpCliente;
         }
 
-        public Pessoa GetPessoa()
-        {
-            return pessoa;
-        }
-
-        public void SetPessoa(Pessoa pessoa)
-        {
-            this.pessoa = pessoa;
-        }
 
         public void Salvar()
         {
@@ -137,27 +130,27 @@ namespace ProjetoEngIII.Model
                 strSQL.Append("VALUES (@dt_cadastro, @cpf, @credito, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@dt_cadastro", pessoa.GetDataCadastro());
+                objComando.Parameters.AddWithValue("@dt_cadastro", this.GetDataCadastro());
                 objComando.Parameters.AddWithValue("@cpf", cpf);
                 objComando.Parameters.AddWithValue("@credito", credito);
                 objComando.Parameters.AddWithValue("@nome", nome);
 
                 foreach (var item in dependentes)
                 {
-                    item.SetPessoa(this);
-                    item.Salvar();
+                   item.SetPessoa(this);
+                   item.Salvar();
                 }
 
                 foreach (var item in enderecos)
                 {
-                    item.SetPessoa(this);
-                    item.Salvar();
+                   item.SetPessoa(this);
+                   item.Salvar();
                 }
 
                 foreach (var item in documentos)
                 {
-                    item.SetPessoa(this);
-                    item.Salvar();
+                   item.SetPessoa(this);
+                   item.Salvar();
                 }
 
                 if (objComando.ExecuteNonQuery() < 1)

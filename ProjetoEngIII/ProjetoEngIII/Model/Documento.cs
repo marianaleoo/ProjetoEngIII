@@ -10,12 +10,12 @@ using ProjetoEngIII.Util;
 namespace ProjetoEngIII.Model
 {
     public class Documento : EntidadeDominio
-    {		
+    {
+   
 		private string codigo;
 		private DateTime validade;
 		private TipoDocumento tpDocumento;
 		private Pessoa pessoa;
-		private Conexao conn;
 
 		public Documento() { }
 
@@ -62,6 +62,7 @@ namespace ProjetoEngIII.Model
 
         public void Salvar()
         {
+            Conexao conn = new Conexao();
             var teste = conn.Connection();
             var objConn = new SqlConnection(teste);
             objConn.Open();

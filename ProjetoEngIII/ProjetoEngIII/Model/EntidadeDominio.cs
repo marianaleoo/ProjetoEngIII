@@ -7,6 +7,8 @@ namespace ProjetoEngIII.Model
 {
     public class EntidadeDominio
     {
+      
+
         public int id;
 
         public DateTime dataCadastro;

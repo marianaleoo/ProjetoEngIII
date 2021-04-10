@@ -43,6 +43,7 @@ namespace ProjetoEngIII.Model
 
 		public void SalvarTipoDocumento()
 		{
+            Conexao conn = new Conexao();
 			var teste = conn.Connection();
 			var objConn = new SqlConnection(teste);
 			objConn.Open();
@@ -59,7 +60,7 @@ namespace ProjetoEngIII.Model
 
 				objComando.CommandText = strSQL.ToString();
 				objComando.Parameters.AddWithValue("@nome", nome);
-				objComando.Parameters.AddWithValue("@nome", descricao);
+				objComando.Parameters.AddWithValue("@descricao", descricao);
 
 				if (objComando.ExecuteNonQuery() < 1)
 				{

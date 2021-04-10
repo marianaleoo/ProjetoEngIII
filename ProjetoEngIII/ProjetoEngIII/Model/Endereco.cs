@@ -10,7 +10,8 @@ using System.Web;
 namespace ProjetoEngIII.Model
 {
     public class Endereco : EntidadeDominio
-    {		
+    {
+
 		private Pessoa pessoa;
 		private string logradouro;
 		private string numero;

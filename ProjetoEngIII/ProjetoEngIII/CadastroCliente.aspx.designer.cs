@@ -11,7 +11,7 @@ namespace ProjetoEngIII
 {
 
 
-    public partial class Teste
+    public partial class CadastroCliente
     {
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Cliente.aspx.cs" Inherits="ProjetoEngIII.Cliente" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="CadastroCliente.aspx.cs" Inherits="ProjetoEngIII.CadastroCliente" %>
 
 <!DOCTYPE html>
 
