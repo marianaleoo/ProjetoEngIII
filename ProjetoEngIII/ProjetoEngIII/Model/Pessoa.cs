@@ -8,7 +8,7 @@ namespace ProjetoEngIII.Model
 	public abstract class Pessoa : EntidadeDominio
 	{
 
-		protected List<Documento> documentos;
+		public List<Documento> documentos;
 
 		public Pessoa()
 		{

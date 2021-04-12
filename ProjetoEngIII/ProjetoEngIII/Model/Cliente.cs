@@ -112,64 +112,64 @@ namespace ProjetoEngIII.Model
         }
 
 
-        public void Salvar()
-        {
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
+        //public void Salvar()
+        //{
+        //    var teste = conn.Connection();
+        //    var objConn = new SqlConnection(teste);
+        //    objConn.Open();
+        //    var objComando = new SqlCommand();
+        //    objComando.Connection = objConn;
 
-            try
-            {
-                tpCliente.SalvarTipoCliente();
+        //    try
+        //    {
+        //        tpCliente.SalvarTipoCliente();
 
-                StringBuilder strSQL = new StringBuilder();
+        //        StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_cliente(dt_cadastro, cpf, credito, nome");
-                strSQL.Append("VALUES (@dt_cadastro, @cpf, @credito, @nome)");
+        //        strSQL.Append("INSERT INTO tb_cliente(dt_cadastro, cpf, credito, nome");
+        //        strSQL.Append("VALUES (@dt_cadastro, @cpf, @credito, @nome)");
 
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@dt_cadastro", this.GetDataCadastro());
-                objComando.Parameters.AddWithValue("@cpf", cpf);
-                objComando.Parameters.AddWithValue("@credito", credito);
-                objComando.Parameters.AddWithValue("@nome", nome);
+        //        objComando.CommandText = strSQL.ToString();
+        //        objComando.Parameters.AddWithValue("@dt_cadastro", this.GetDataCadastro());
+        //        objComando.Parameters.AddWithValue("@cpf", cpf);
+        //        objComando.Parameters.AddWithValue("@credito", credito);
+        //        objComando.Parameters.AddWithValue("@nome", nome);
 
-                foreach (var item in dependentes)
-                {
-                   item.SetPessoa(this);
-                   item.Salvar();
-                }
+        //        foreach (var item in dependentes)
+        //        {
+        //           item.SetPessoa(this);
+        //           item.Salvar();
+        //        }
 
-                foreach (var item in enderecos)
-                {
-                   item.SetPessoa(this);
-                   item.Salvar();
-                }
+        //        foreach (var item in enderecos)
+        //        {
+        //           item.SetPessoa(this);
+        //           item.Salvar();
+        //        }
 
-                foreach (var item in documentos)
-                {
-                   item.SetPessoa(this);
-                   item.Salvar();
-                }
+        //        foreach (var item in documentos)
+        //        {
+        //           item.SetPessoa(this);
+        //           item.Salvar();
+        //        }
 
-                if (objComando.ExecuteNonQuery() < 1)
-                {
-                    throw new Exception("Erro ao inserir registro");
-                }
-                objConn.Close();
+        //        if (objComando.ExecuteNonQuery() < 1)
+        //        {
+        //            throw new Exception("Erro ao inserir registro");
+        //        }
+        //        objConn.Close();
 
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (objConn.State == ConnectionState.Open)
+        //        {
+        //            objConn.Close();
+        //        }
 
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        //        throw new Exception("Erro ao inserir registro " + ex.Message);
+        //    }
+        //}
 
         //public bool ValidarDependente(Cliente cliente)
         //{

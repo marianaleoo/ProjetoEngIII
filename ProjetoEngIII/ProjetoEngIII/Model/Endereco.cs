@@ -103,45 +103,6 @@ namespace ProjetoEngIII.Model
 		{
 			this.cidade = cidade;
 		}
-
-        public void Salvar()
-        {
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
-
-            try
-            {
-                tpEndereco.SalvarTipoEndereco();
-
-                StringBuilder strSQL = new StringBuilder();
-
-                strSQL.Append("INSERT INTO tb_endereco(cli_id, tpend_id, cidade, estado");
-                strSQL.Append("logradouro, numero, cep) VALUES (@cli_id, @tpend_id, @cidade, @estado, @logradouro, @numero, @cep)");
-
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", pessoa.GetId());
-                objComando.Parameters.AddWithValue("@tpend_id", tpEndereco.GetId());
-                objComando.Parameters.AddWithValue("@cidade", cidade.GetDescricao());
-                objComando.Parameters.AddWithValue("@estado", cidade.GetEstado().getDescricao());
-				objComando.Parameters.AddWithValue("@logradouro", logradouro);
-				objComando.Parameters.AddWithValue("@numero", numero);
-				objComando.Parameters.AddWithValue("@cep", cep);
-
-				objConn.Close();
-
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
-
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        
     }
 }

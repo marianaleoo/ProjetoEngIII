@@ -1,4 +1,5 @@
-﻿using ProjetoEngIII.Model;
+﻿using ProjetoEngIII.DAO;
+using ProjetoEngIII.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,8 +55,9 @@ namespace ProjetoEngIII
 
             Cliente cliente = new Cliente(enderecos, dependentes, "mariana", 100, "12312312312", tipoClienteVip);
 
-            cliente.Salvar();
+            ClienteDAO clienteDao = new ClienteDAO();
 
+            clienteDao.Save(cliente);
 
         }
     }

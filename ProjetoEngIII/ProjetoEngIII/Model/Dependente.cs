@@ -54,47 +54,7 @@ namespace ProjetoEngIII.Model
         public void SetTpParentesco(TipoParentesco tpParentesco)
         {
             this.tpParentesco = tpParentesco;
-        }
-
-
-        public void Salvar()
-        {
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
-
-            try
-            {
-                tpParentesco.SalvarTipoParentesco();
-
-                StringBuilder strSQL = new StringBuilder();
-
-                strSQL.Append("INSERT INTO tb_dependente(id_tpparent, nome");
-                strSQL.Append("VALUES (@id_tpparent, @nome)");
-
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@id_tpparent", tpParentesco.GetId());
-                objComando.Parameters.AddWithValue("@nome", GetNome());
-
-                if (objComando.ExecuteNonQuery() < 1)
-                {
-                    throw new Exception("Erro ao inserir registro");
-                }
-                objConn.Close();
-
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
-
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        }        
 
     }
 }
