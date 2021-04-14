@@ -29,7 +29,7 @@ namespace ProjetoEngIII.DAO
 
             try
             {
-                SalvarTipoCliente();
+                SalvarTipoCliente(cliente.GetTipoCliente());
 
                 StringBuilder strSQL = new StringBuilder();
 
@@ -42,21 +42,21 @@ namespace ProjetoEngIII.DAO
                 objComando.Parameters.AddWithValue("@credito", cliente.GetCredito());
                 objComando.Parameters.AddWithValue("@nome", cliente.GetNome());
 
-                foreach (var item in dependentes)
+                foreach (var item in cliente.GetDependente())
                 {
-                    item.SetPessoa(pessoa);
+                    item.SetPessoa(cliente);
                     SalvarDependente(item);
                 }
 
-                foreach (var item in enderecos)
+                foreach (var item in cliente.GetEndereco())
                 {
-                    item.SetPessoa(pessoa);
+                    item.SetPessoa(cliente);
                     SalvarEndereco(item);
                 }
 
-                foreach (var item in pessoa.documentos)
+                foreach (var item in cliente.getDocumentos())
                 {
-                    item.SetPessoa(pessoa);
+                    item.SetPessoa(cliente);
                     SalvarDocumento(item);
                 }
 
@@ -89,7 +89,7 @@ namespace ProjetoEngIII.DAO
 
             try
             {
-                SalvarTipoParentesco();
+                SalvarTipoParentesco(dependente.GetTpParentesco());
 
                 StringBuilder strSQL = new StringBuilder();
 
@@ -97,7 +97,7 @@ namespace ProjetoEngIII.DAO
                 strSQL.Append("VALUES (@id_tpparent, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@id_tpparent", tpParentesco.GetId());
+                objComando.Parameters.AddWithValue("@id_tpparent", dependente.GetTpParentesco().GetId());
                 objComando.Parameters.AddWithValue("@nome", dependente.GetNome());
 
                 if (objComando.ExecuteNonQuery() < 1)
@@ -130,7 +130,7 @@ namespace ProjetoEngIII.DAO
 
             try
             {
-                SalvarTipoDocumento();
+                SalvarTipoDocumento(documento.GetTpDocumento());
 
                 StringBuilder strSQL = new StringBuilder();
 
@@ -138,8 +138,8 @@ namespace ProjetoEngIII.DAO
                 strSQL.Append("validade) VALUES (@cli_id,@tpdoc_id,@codigo,@validade)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", pessoa.GetId());
-                objComando.Parameters.AddWithValue("@tpdoc_id", tpDocumento.GetId());
+                objComando.Parameters.AddWithValue("@cli_id", documento.GetPessoa().GetId());
+                objComando.Parameters.AddWithValue("@tpdoc_id", documento.GetTpDocumento().GetId());
                 objComando.Parameters.AddWithValue("@codigo", documento.GetCodigo());
                 objComando.Parameters.AddWithValue("@validade", documento.GetValidade());
                 if (objComando.ExecuteNonQuery() < 1)
@@ -171,7 +171,7 @@ namespace ProjetoEngIII.DAO
 
             try
             {
-                SalvarTipoEndereco();
+                SalvarTipoEndereco(endereco.GetTpEndereco());
 
                 StringBuilder strSQL = new StringBuilder();
 
@@ -179,8 +179,8 @@ namespace ProjetoEngIII.DAO
                 strSQL.Append("logradouro, numero, cep) VALUES (@cli_id, @tpend_id, @cidade, @estado, @logradouro, @numero, @cep)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", pessoa.GetId());
-                objComando.Parameters.AddWithValue("@tpend_id", tpEndereco.GetId());
+                objComando.Parameters.AddWithValue("@cli_id", endereco.GetPessoa().GetId());
+                objComando.Parameters.AddWithValue("@tpend_id", endereco.GetTpEndereco().GetId());
                 objComando.Parameters.AddWithValue("@cidade", endereco.GetCidade().GetDescricao());
                 objComando.Parameters.AddWithValue("@estado", endereco.GetCidade().GetEstado().getDescricao());
                 objComando.Parameters.AddWithValue("@logradouro", endereco.GetLogradouro());
@@ -201,7 +201,7 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarTipoCliente()
+        public void SalvarTipoCliente(EntidadeDominio entidade)
         {
             TipoCliente tpCliente = new TipoCliente();
             var teste = conn.Connection();
@@ -239,7 +239,7 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarTipoParentesco()
+        public void SalvarTipoParentesco(EntidadeDominio entidade)
         {
             TipoParentesco tpParentesco = new TipoParentesco();
             var teste = conn.Connection();
@@ -277,7 +277,7 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarTipoEndereco()
+        public void SalvarTipoEndereco(EntidadeDominio entidade)
         {
             TipoEndereco tpEndereco = new TipoEndereco();
             var teste = conn.Connection();
@@ -315,7 +315,7 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarTipoDocumento()
+        public void SalvarTipoDocumento(EntidadeDominio entidade)
         {
             TipoDocumento tpDocumento = new TipoDocumento();
             Conexao conn = new Conexao();
