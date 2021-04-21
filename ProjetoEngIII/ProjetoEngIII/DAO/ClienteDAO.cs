@@ -51,13 +51,12 @@ namespace ProjetoEngIII.DAO
                 foreach (var item in cliente.GetEndereco())
                 {
                     item.SetPessoa(cliente);
-                    SalvarEndereco(item);
+
                 }
 
                 foreach (var item in cliente.getDocumentos())
                 {
                     item.SetPessoa(cliente);
-                    SalvarDocumento(item);
                 }
 
                 if (objComando.ExecuteNonQuery() < 1)
@@ -118,88 +117,88 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarDocumento(Documento documento)
-        {
-            TipoDocumento tpDocumento = new TipoDocumento();
-            Conexao conn = new Conexao();
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
+        //public void SalvarDocumento(Documento documento)
+        //{
+        //    TipoDocumento tpDocumento = new TipoDocumento();
+        //    Conexao conn = new Conexao();
+        //    var teste = conn.Connection();
+        //    var objConn = new SqlConnection(teste);
+        //    objConn.Open();
+        //    var objComando = new SqlCommand();
+        //    objComando.Connection = objConn;
 
-            try
-            {
-                SalvarTipoDocumento(documento.GetTpDocumento());
+        //    try
+        //    {
+        //        SalvarTipoDocumento(documento.GetTpDocumento());
 
-                StringBuilder strSQL = new StringBuilder();
+        //        StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_documento(cli_id, tpdoc_id, codigo, ");
-                strSQL.Append("validade) VALUES (@cli_id,@tpdoc_id,@codigo,@validade)");
+        //        strSQL.Append("INSERT INTO tb_documento(cli_id, tpdoc_id, codigo, ");
+        //        strSQL.Append("validade) VALUES (@cli_id,@tpdoc_id,@codigo,@validade)");
 
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", documento.GetPessoa().GetId());
-                objComando.Parameters.AddWithValue("@tpdoc_id", documento.GetTpDocumento().GetId());
-                objComando.Parameters.AddWithValue("@codigo", documento.GetCodigo());
-                objComando.Parameters.AddWithValue("@validade", documento.GetValidade());
-                if (objComando.ExecuteNonQuery() < 1)
-                {
-                    throw new Exception("Erro ao inserir registro " + documento.GetCodigo());
-                }
-                objConn.Close();
+        //        objComando.CommandText = strSQL.ToString();
+        //        objComando.Parameters.AddWithValue("@cli_id", documento.GetPessoa().GetId());
+        //        objComando.Parameters.AddWithValue("@tpdoc_id", documento.GetTpDocumento().GetId());
+        //        objComando.Parameters.AddWithValue("@codigo", documento.GetCodigo());
+        //        objComando.Parameters.AddWithValue("@validade", documento.GetValidade());
+        //        if (objComando.ExecuteNonQuery() < 1)
+        //        {
+        //            throw new Exception("Erro ao inserir registro " + documento.GetCodigo());
+        //        }
+        //        objConn.Close();
 
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (objConn.State == ConnectionState.Open)
+        //        {
+        //            objConn.Close();
+        //        }
 
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        //        throw new Exception("Erro ao inserir registro " + ex.Message);
+        //    }
+        //}
 
-        public void SalvarEndereco(Endereco endereco)
-        {
-            TipoEndereco tpEndereco = new TipoEndereco();
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
+        //public void SalvarEndereco(Endereco endereco)
+        //{
+        //    TipoEndereco tpEndereco = new TipoEndereco();
+        //    var teste = conn.Connection();
+        //    var objConn = new SqlConnection(teste);
+        //    objConn.Open();
+        //    var objComando = new SqlCommand();
+        //    objComando.Connection = objConn;
 
-            try
-            {
-                SalvarTipoEndereco(endereco.GetTpEndereco());
+        //    try
+        //    {
+        //        SalvarTipoEndereco(endereco.GetTpEndereco());
 
-                StringBuilder strSQL = new StringBuilder();
+        //        StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_endereco(cli_id, tpend_id, cidade, estado");
-                strSQL.Append("logradouro, numero, cep) VALUES (@cli_id, @tpend_id, @cidade, @estado, @logradouro, @numero, @cep)");
+        //        strSQL.Append("INSERT INTO tb_endereco(cli_id, tpend_id, cidade, estado");
+        //        strSQL.Append("logradouro, numero, cep) VALUES (@cli_id, @tpend_id, @cidade, @estado, @logradouro, @numero, @cep)");
 
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", endereco.GetPessoa().GetId());
-                objComando.Parameters.AddWithValue("@tpend_id", endereco.GetTpEndereco().GetId());
-                objComando.Parameters.AddWithValue("@cidade", endereco.GetCidade().GetDescricao());
-                objComando.Parameters.AddWithValue("@estado", endereco.GetCidade().GetEstado().getDescricao());
-                objComando.Parameters.AddWithValue("@logradouro", endereco.GetLogradouro());
-                objComando.Parameters.AddWithValue("@numero", endereco.GetNumero());
-                objComando.Parameters.AddWithValue("@cep", endereco.GetCep());
+        //        objComando.CommandText = strSQL.ToString();
+        //        objComando.Parameters.AddWithValue("@cli_id", endereco.GetPessoa().GetId());
+        //        objComando.Parameters.AddWithValue("@tpend_id", endereco.GetTpEndereco().GetId());
+        //        objComando.Parameters.AddWithValue("@cidade", endereco.GetCidade().GetDescricao());
+        //        objComando.Parameters.AddWithValue("@estado", endereco.GetCidade().GetEstado().getDescricao());
+        //        objComando.Parameters.AddWithValue("@logradouro", endereco.GetLogradouro());
+        //        objComando.Parameters.AddWithValue("@numero", endereco.GetNumero());
+        //        objComando.Parameters.AddWithValue("@cep", endereco.GetCep());
 
-                objConn.Close();
+        //        objConn.Close();
 
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (objConn.State == ConnectionState.Open)
+        //        {
+        //            objConn.Close();
+        //        }
 
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        //        throw new Exception("Erro ao inserir registro " + ex.Message);
+        //    }
+        //}
 
         public void SalvarTipoCliente(EntidadeDominio entidade)
         {
@@ -277,81 +276,81 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarTipoEndereco(EntidadeDominio entidade)
-        {
-            TipoEndereco tpEndereco = new TipoEndereco();
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
+        //public void SalvarTipoEndereco(EntidadeDominio entidade)
+        //{
+        //    TipoEndereco tpEndereco = new TipoEndereco();
+        //    var teste = conn.Connection();
+        //    var objConn = new SqlConnection(teste);
+        //    objConn.Open();
+        //    var objComando = new SqlCommand();
+        //    objComando.Connection = objConn;
 
-            try
-            {
-                StringBuilder strSQL = new StringBuilder();
-                strSQL.Append("INSERT INTO ");
-                strSQL.Append("tb_tpendereco");
-                strSQL.Append("(nome, descricao) ");
-                strSQL.Append("VALUES (@nome,@descricao)");
+        //    try
+        //    {
+        //        StringBuilder strSQL = new StringBuilder();
+        //        strSQL.Append("INSERT INTO ");
+        //        strSQL.Append("tb_tpendereco");
+        //        strSQL.Append("(nome, descricao) ");
+        //        strSQL.Append("VALUES (@nome,@descricao)");
 
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@nome", tpEndereco.GetNome());
-                objComando.Parameters.AddWithValue("@descricao", tpEndereco.GetDescricao());
+        //        objComando.CommandText = strSQL.ToString();
+        //        objComando.Parameters.AddWithValue("@nome", tpEndereco.GetNome());
+        //        objComando.Parameters.AddWithValue("@descricao", tpEndereco.GetDescricao());
 
-                if (objComando.ExecuteNonQuery() < 1)
-                {
-                    throw new Exception("Erro ao inserir registro " + tpEndereco.GetNome());
-                }
-                objConn.Close();
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
+        //        if (objComando.ExecuteNonQuery() < 1)
+        //        {
+        //            throw new Exception("Erro ao inserir registro " + tpEndereco.GetNome());
+        //        }
+        //        objConn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (objConn.State == ConnectionState.Open)
+        //        {
+        //            objConn.Close();
+        //        }
 
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+        //        throw new Exception("Erro ao inserir registro " + ex.Message);
+        //    }
+        //}
 
-        public void SalvarTipoDocumento(EntidadeDominio entidade)
-        {
-            TipoDocumento tpDocumento = new TipoDocumento();
-            Conexao conn = new Conexao();
-            var teste = conn.Connection();
-            var objConn = new SqlConnection(teste);
-            objConn.Open();
-            var objComando = new SqlCommand();
-            objComando.Connection = objConn;
+    //    public void SalvarTipoDocumento(EntidadeDominio entidade)
+    //    {
+    //        TipoDocumento tpDocumento = new TipoDocumento();
+    //        Conexao conn = new Conexao();
+    //        var teste = conn.Connection();
+    //        var objConn = new SqlConnection(teste);
+    //        objConn.Open();
+    //        var objComando = new SqlCommand();
+    //        objComando.Connection = objConn;
 
-            try
-            {
-                StringBuilder strSQL = new StringBuilder();
-                strSQL.Append("INSERT INTO ");
-                strSQL.Append("tb_tpdocumento");
-                strSQL.Append("(nome, descricao) ");
-                strSQL.Append("VALUES (@nome,@descricao)");
+    //        try
+    //        {
+    //            StringBuilder strSQL = new StringBuilder();
+    //            strSQL.Append("INSERT INTO ");
+    //            strSQL.Append("tb_tpdocumento");
+    //            strSQL.Append("(nome, descricao) ");
+    //            strSQL.Append("VALUES (@nome,@descricao)");
 
-                objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@nome", tpDocumento.GetNome());
-                objComando.Parameters.AddWithValue("@descricao", tpDocumento.GetDescricao());
+    //            objComando.CommandText = strSQL.ToString();
+    //            objComando.Parameters.AddWithValue("@nome", tpDocumento.GetNome());
+    //            objComando.Parameters.AddWithValue("@descricao", tpDocumento.GetDescricao());
 
-                if (objComando.ExecuteNonQuery() < 1)
-                {
-                    throw new Exception("Erro ao inserir registro " + tpDocumento.GetNome());
-                }
-                objConn.Close();
-            }
-            catch (Exception ex)
-            {
-                if (objConn.State == ConnectionState.Open)
-                {
-                    objConn.Close();
-                }
+    //            if (objComando.ExecuteNonQuery() < 1)
+    //            {
+    //                throw new Exception("Erro ao inserir registro " + tpDocumento.GetNome());
+    //            }
+    //            objConn.Close();
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            if (objConn.State == ConnectionState.Open)
+    //            {
+    //                objConn.Close();
+    //            }
 
-                throw new Exception("Erro ao inserir registro " + ex.Message);
-            }
-        }
+    //            throw new Exception("Erro ao inserir registro " + ex.Message);
+    //        }
+    //    }
     }
 }
