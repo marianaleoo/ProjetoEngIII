@@ -9,13 +9,10 @@ namespace ProjetoEngIII.Model
     {
         public TipoParentesco()
         {
-
         }
 
-        public TipoParentesco(string descricao, string nome)
-        {
-            this.descricao = descricao;
-            this.nome = nome;
+        public TipoParentesco(string descricao, string nome) : base(descricao, nome)
+        { 
         }
     }
 }

@@ -53,7 +53,7 @@ namespace ProjetoEngIII
 
             TipoCliente tipoClienteVip = new TipoCliente("Cliente que gasta bem!", "VIP");
 
-            Cliente cliente = new Cliente(enderecos, dependentes, "mariana", 100, "12312312312", tipoClienteVip);
+            Cliente cliente = new Cliente(documentos, enderecos, dependentes, "mariana", 100, "12312312312", tipoClienteVip);
 
             ClienteDAO clienteDao = new ClienteDAO();
 

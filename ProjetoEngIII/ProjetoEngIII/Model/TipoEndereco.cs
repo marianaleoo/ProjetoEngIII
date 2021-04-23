@@ -11,10 +11,8 @@ namespace ProjetoEngIII.Model
 		{
 		}
 
-		public TipoEndereco(string descricao, string nome)
-		{
-			this.descricao = descricao;
-			this.nome = nome;
+		public TipoEndereco(string descricao, string nome) : base (descricao, nome)
+		{			
 		}
 
 	}

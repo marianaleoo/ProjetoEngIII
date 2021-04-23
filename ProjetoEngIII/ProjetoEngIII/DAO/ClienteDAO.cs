@@ -118,8 +118,9 @@ namespace ProjetoEngIII.DAO
             }
         }
 
-        public void SalvarDocumento(Documento documento)
+        public void SalvarDocumento(EntidadeDominio entidade)
         {
+            Documento documento = (Documento)entidade;
             TipoDocumento tpDocumento = new TipoDocumento();
             Conexao conn = new Conexao();
             var teste = conn.Connection();

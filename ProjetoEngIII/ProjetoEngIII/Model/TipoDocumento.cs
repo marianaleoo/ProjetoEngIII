@@ -11,10 +11,8 @@ namespace ProjetoEngIII.Model
 		{
 		}
 
-		public TipoDocumento(string descricao, string nome)
-		{
-			this.descricao = descricao;
-			this.nome = nome;
+		public TipoDocumento(string descricao, string nome) : base(descricao, nome)
+		{			
 		}
 	}
 }

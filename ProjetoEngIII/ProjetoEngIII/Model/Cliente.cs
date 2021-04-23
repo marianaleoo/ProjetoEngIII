@@ -22,11 +22,10 @@ namespace ProjetoEngIII.Model
 
         public Cliente()
         {
-
         }
 
-        public Cliente(List<Endereco> enderecos, List<Dependente> dependentes, string nome, decimal credito, string cpf, TipoCliente tpCliente)
-        {
+        public Cliente(List<Documento> documentos, List<Endereco> enderecos, List<Dependente> dependentes, string nome, decimal credito, string cpf, TipoCliente tpCliente) : base(documentos)
+        {            
             this.enderecos = enderecos;
             this.dependentes = dependentes;
             this.nome = nome;
