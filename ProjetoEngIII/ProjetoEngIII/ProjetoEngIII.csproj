@@ -80,6 +80,8 @@
       <DependentUpon>CadastroCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="DAO\ClienteDAO.cs" />
+    <Compile Include="DAO\DocumentoDAO.cs" />
+    <Compile Include="DAO\EnderecoDAO.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="Model\Cidade.cs" />
     <Compile Include="Model\Cliente.cs" />
