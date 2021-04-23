@@ -11,11 +11,10 @@ namespace ProjetoEngIII.Util
     {
         public string Connection()
         {
-            SqlConnection objConn;
-
             string strConnBD = Convert.ToString(ConfigurationSettings.AppSettings["connectionString"].ToString());
 
             return strConnBD;
-        }        
+        }
+       
     }
 }

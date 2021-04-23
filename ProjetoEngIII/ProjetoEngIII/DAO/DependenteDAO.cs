@@ -10,18 +10,19 @@ using System.Web;
 
 namespace ProjetoEngIII.DAO
 {
-    public class DocumentoDAO : IDAO
+    public class DependenteDAO : IDAO
     {        
         public void Save(EntidadeDominio entidade)
-        {
-            Documento documento = (Documento)entidade;
+        {            
+            Dependente dependente = (Dependente)entidade;
             #region Conexão BD
             Conexao conn = new Conexao();
             var conexao = conn.Connection();
             var objConn = new SqlConnection(conexao);
-            if (objConn.State == ConnectionState.Closed) {
+            if (objConn.State == ConnectionState.Closed)
+            {
                 objConn.Open();
-            }          
+            }
             var objComando = new SqlCommand();
             objComando.Connection = objConn;
             #endregion
@@ -29,21 +30,20 @@ namespace ProjetoEngIII.DAO
             try
             {
                 TipoDAO tipoDao = new TipoDAO();
-                tipoDao.Salvar(documento.GetTpDocumento());
+                tipoDao.Salvar(dependente.GetTpParentesco());
 
                 StringBuilder strSQL = new StringBuilder();
 
-                strSQL.Append("INSERT INTO tb_documento(cli_id, tpdoc_id, codigo, ");
-                strSQL.Append("validade) VALUES (@cli_id,@tpdoc_id,@codigo,@validade)");
+                strSQL.Append("INSERT INTO tb_dependente(tpparent_id, nome)");
+                strSQL.Append("VALUES (@tpparent_id, @nome)");
 
                 objComando.CommandText = strSQL.ToString();
-                objComando.Parameters.AddWithValue("@cli_id", documento.GetPessoa().GetId());
-                objComando.Parameters.AddWithValue("@tpdoc_id", documento.GetTpDocumento().GetId());
-                objComando.Parameters.AddWithValue("@codigo", documento.GetCodigo());
-                objComando.Parameters.AddWithValue("@validade", documento.GetValidade());
+                objComando.Parameters.AddWithValue("@tpparent_id", dependente.GetTpParentesco().GetId());
+                objComando.Parameters.AddWithValue("@nome", dependente.GetNome());
+
                 if (objComando.ExecuteNonQuery() < 1)
                 {
-                    throw new Exception("Erro ao inserir registro " + documento.GetCodigo());
+                    throw new Exception("Erro ao inserir registro");
                 }
                 objConn.Close();
 
@@ -57,6 +57,6 @@ namespace ProjetoEngIII.DAO
 
                 throw new Exception("Erro ao inserir registro " + ex.Message);
             }
-        }        
+        }
     }
 }

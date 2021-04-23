@@ -14,23 +14,23 @@ namespace ProjetoEngIII.Model
    
 		private string codigo;
 		private DateTime validade;
-		private TipoDocumento tpDocumento;
+		private TpDocumento tpDocumento;
 		private Pessoa pessoa;
 
 		public Documento() { }
 
-		public Documento(string codigo, DateTime validade, TipoDocumento tpDocumento)
+		public Documento(string codigo, DateTime validade, TpDocumento tpDocumento)
 		{
 			this.codigo = codigo;
 			this.validade = validade;
 			this.tpDocumento = tpDocumento;
 		}
 
-		public TipoDocumento GetTpDocumento()
+		public TpDocumento GetTpDocumento()
 		{
 			return tpDocumento;
 		}
-		public void SetTpDocumento(TipoDocumento tpDocumento)
+		public void SetTpDocumento(TpDocumento tpDocumento)
 		{
 			this.tpDocumento = tpDocumento;
 		}

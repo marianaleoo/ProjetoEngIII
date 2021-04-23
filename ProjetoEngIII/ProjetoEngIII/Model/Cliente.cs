@@ -16,15 +16,14 @@ namespace ProjetoEngIII.Model
         private List<Dependente> dependentes;
         private string nome;
         private decimal credito;
-        private string cpf;
-        private Conexao conn;
-        private TipoCliente tpCliente;
+        private string cpf;        
+        private TpCliente tpCliente;
 
         public Cliente()
         {
         }
 
-        public Cliente(List<Documento> documentos, List<Endereco> enderecos, List<Dependente> dependentes, string nome, decimal credito, string cpf, TipoCliente tpCliente) : base(documentos)
+        public Cliente(List<Documento> documentos, List<Endereco> enderecos, List<Dependente> dependentes, string nome, decimal credito, string cpf, TpCliente tpCliente) : base(documentos)
         {            
             this.enderecos = enderecos;
             this.dependentes = dependentes;
@@ -34,7 +33,7 @@ namespace ProjetoEngIII.Model
             this.tpCliente = tpCliente;
         }
 
-        public List<Endereco> GetEndereco()
+        public List<Endereco> GetEnderecos()
         {
             return enderecos;
         }
@@ -86,7 +85,7 @@ namespace ProjetoEngIII.Model
             this.credito = credito;
         }
 
-        public List<Dependente> GetDependente()
+        public List<Dependente> GetDependentes()
         {
             return dependentes;
         }
@@ -100,89 +99,15 @@ namespace ProjetoEngIII.Model
             dependentes.Add(dependente);
         }
 
-        public TipoCliente GetTipoCliente()
+        public TpCliente GetTipoCliente()
         {
             return tpCliente;
         }
 
-        public void SetTipoCliente(TipoCliente tpCliente)
+        public void SetTipoCliente(TpCliente tpCliente)
         {
             this.tpCliente = tpCliente;
         }
-
-
-        //public void Salvar()
-        //{
-        //    var teste = conn.Connection();
-        //    var objConn = new SqlConnection(teste);
-        //    objConn.Open();
-        //    var objComando = new SqlCommand();
-        //    objComando.Connection = objConn;
-
-        //    try
-        //    {
-        //        tpCliente.SalvarTipoCliente();
-
-        //        StringBuilder strSQL = new StringBuilder();
-
-        //        strSQL.Append("INSERT INTO tb_cliente(dt_cadastro, cpf, credito, nome");
-        //        strSQL.Append("VALUES (@dt_cadastro, @cpf, @credito, @nome)");
-
-        //        objComando.CommandText = strSQL.ToString();
-        //        objComando.Parameters.AddWithValue("@dt_cadastro", this.GetDataCadastro());
-        //        objComando.Parameters.AddWithValue("@cpf", cpf);
-        //        objComando.Parameters.AddWithValue("@credito", credito);
-        //        objComando.Parameters.AddWithValue("@nome", nome);
-
-        //        foreach (var item in dependentes)
-        //        {
-        //           item.SetPessoa(this);
-        //           item.Salvar();
-        //        }
-
-        //        foreach (var item in enderecos)
-        //        {
-        //           item.SetPessoa(this);
-        //           item.Salvar();
-        //        }
-
-        //        foreach (var item in documentos)
-        //        {
-        //           item.SetPessoa(this);
-        //           item.Salvar();
-        //        }
-
-        //        if (objComando.ExecuteNonQuery() < 1)
-        //        {
-        //            throw new Exception("Erro ao inserir registro");
-        //        }
-        //        objConn.Close();
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (objConn.State == ConnectionState.Open)
-        //        {
-        //            objConn.Close();
-        //        }
-
-        //        throw new Exception("Erro ao inserir registro " + ex.Message);
-        //    }
-        //}
-
-        //public bool ValidarDependente(Cliente cliente)
-        //{
-        //    if (cliente.dependentes.Count > 2)
-        //    {
-        //        return false;
-
-        //    }
-        //    else
-        //    {
-        //        return true;
-
-        //    }
-        //}
 
         public bool ValidarCPF(Documento documento)
         {

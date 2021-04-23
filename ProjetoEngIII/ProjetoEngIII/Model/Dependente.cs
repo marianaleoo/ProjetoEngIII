@@ -14,12 +14,12 @@ namespace ProjetoEngIII.Model
         private Pessoa pessoa;
         private Cliente cliente;
         private Conexao conn;
-        private TipoParentesco tpParentesco;
+        private TpParentesco tpParentesco;
         private String nome;
 
         public Dependente() { }
 
-        public Dependente(string nome, TipoParentesco tpParentesco)
+        public Dependente(string nome, TpParentesco tpParentesco)
         {
             this.nome = nome;
             this.tpParentesco = tpParentesco;
@@ -46,12 +46,12 @@ namespace ProjetoEngIII.Model
             this.pessoa = pessoa;
         }
 
-        public TipoParentesco GetTpParentesco()
+        public TpParentesco GetTpParentesco()
         {
             return tpParentesco;
         }
 
-        public void SetTpParentesco(TipoParentesco tpParentesco)
+        public void SetTpParentesco(TpParentesco tpParentesco)
         {
             this.tpParentesco = tpParentesco;
         }        

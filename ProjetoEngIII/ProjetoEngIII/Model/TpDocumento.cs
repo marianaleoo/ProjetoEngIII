@@ -5,13 +5,13 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class TipoDocumento : Tipo
+    public class TpDocumento : Tipo
     {
-		public TipoDocumento()
+		public TpDocumento()
 		{
 		}
 
-		public TipoDocumento(string descricao, string nome) : base(descricao, nome)
+		public TpDocumento(string descricao, string nome) : base(descricao, nome)
 		{			
 		}
 	}

@@ -5,13 +5,13 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class TipoParentesco : Tipo
+    public class TpParentesco : Tipo
     {
-        public TipoParentesco()
+        public TpParentesco()
         {
         }
 
-        public TipoParentesco(string descricao, string nome) : base(descricao, nome)
+        public TpParentesco(string descricao, string nome) : base(descricao, nome)
         { 
         }
     }

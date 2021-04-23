@@ -5,14 +5,15 @@ using System.Web;
 
 namespace ProjetoEngIII.Model
 {
-    public class TipoCliente : Tipo
+    public class TpEndereco : Tipo
     {
-		public TipoCliente()
+		public TpEndereco()
 		{
 		}
 
-		public TipoCliente(string descricao, string nome) : base(descricao, nome)
+		public TpEndereco(string descricao, string nome) : base (descricao, nome)
 		{			
 		}
+
 	}
 }

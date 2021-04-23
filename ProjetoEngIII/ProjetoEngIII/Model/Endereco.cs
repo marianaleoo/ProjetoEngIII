@@ -18,13 +18,13 @@ namespace ProjetoEngIII.Model
 		private string cep;
 		private string complemento;
 		private Cidade cidade;
-		private TipoEndereco tpEndereco;
+		private TpEndereco tpEndereco;
         private Conexao conn;
 
         public Endereco() { }
 
 		public Endereco(string logradouro, string numero, string cep,
-				string complemento, Cidade cidade, TipoEndereco tpEndereco)
+				string complemento, Cidade cidade, TpEndereco tpEndereco)
 		{
 			this.logradouro = logradouro;
 			this.numero = numero;
@@ -44,12 +44,12 @@ namespace ProjetoEngIII.Model
 			this.pessoa = pessoa;
 		}
 
-		public TipoEndereco GetTpEndereco()
+		public TpEndereco GetTpEndereco()
 		{
 			return tpEndereco;
 		}
 
-		public void SetTpEndereco(TipoEndereco tpEndereco)
+		public void SetTpEndereco(TpEndereco tpEndereco)
 		{
 			this.tpEndereco = tpEndereco;
 		}

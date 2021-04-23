@@ -14,7 +14,7 @@ namespace ProjetoEngIII
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            TipoDocumento tipoDocumentoRg = new TipoDocumento();
+            TpDocumento tipoDocumentoRg = new TpDocumento();
 
             tipoDocumentoRg.SetDescricao("REGISTRO GERAL");
 
@@ -25,7 +25,7 @@ namespace ProjetoEngIII
             List<Documento> documentos = new List<Documento>();
             documentos.Add(documento);
 
-            TipoEndereco tipoEnderecoEntrega = new TipoEndereco("Endereco para entrega de pedidos", "Entrega");
+            TpEndereco tipoEnderecoEntrega = new TpEndereco("Endereco para entrega de pedidos", "Entrega");
             Estado sp = new Estado("SP");
             Cidade mogi = new Cidade("Mogi das Cruzes", sp);
 
@@ -38,7 +38,7 @@ namespace ProjetoEngIII
             List<Endereco> enderecos = new List<Endereco>();
             enderecos.Add(endereco);
 
-            TipoParentesco tipoParentesco = new TipoParentesco();
+            TpParentesco tipoParentesco = new TpParentesco();
 
             tipoParentesco.SetDescricao("Filho");
 
@@ -51,7 +51,7 @@ namespace ProjetoEngIII
             List<Dependente> dependentes = new List<Dependente>();
             dependentes.Add(dependente);
 
-            TipoCliente tipoClienteVip = new TipoCliente("Cliente que gasta bem!", "VIP");
+            TpCliente tipoClienteVip = new TpCliente("Cliente que gasta bem!", "VIP");
 
             Cliente cliente = new Cliente(documentos, enderecos, dependentes, "mariana", 100, "12312312312", tipoClienteVip);
 

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ProjetoEngIII.DAO
 {
-    public interface IDAO<T>
+    public interface IDAO
     {
-        public void Save(T obj);
+        public void Save(EntidadeDominio entidade);
     }
 }
