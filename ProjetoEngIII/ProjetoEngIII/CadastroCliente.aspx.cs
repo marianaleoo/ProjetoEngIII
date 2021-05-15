@@ -25,13 +25,13 @@ namespace ProjetoEngIII
             List<Documento> documentos = new List<Documento>();
             documentos.Add(documento);
 
-            TpEndereco tipoEnderecoEntrega = new TpEndereco("Endereco para entrega de pedidos", "Entrega");
+            TpEndereco tipoEnderecoEntrega = new TpEndereco("Endereco entrega de pedidos", "Entrega");
             Estado sp = new Estado("SP");
             Cidade mogi = new Cidade("Mogi das Cruzes", sp);
 
             String rua = "Av 7 de setembro";
             String numero = "200";
-            String cep = "08790-000";
+            String cep = "08790000";
 
             Endereco endereco = new Endereco(rua, numero, cep, null, mogi, tipoEnderecoEntrega);
 
@@ -57,7 +57,7 @@ namespace ProjetoEngIII
 
             ClienteDAO clienteDao = new ClienteDAO();
 
-            clienteDao.Save(cliente);
+            clienteDao.Salvar(cliente);
 
         }
     }

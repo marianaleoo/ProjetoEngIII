@@ -25,7 +25,7 @@ namespace ProjetoEngIII.Model
 
         public DateTime GetDataCadastro()
         {
-            return dataCadastro;
+            return dataCadastro = DateTime.Now;
         }
 
         public void SetDataCadastro(DateTime dataCadastro)

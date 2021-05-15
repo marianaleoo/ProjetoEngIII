@@ -9,6 +9,9 @@ namespace ProjetoEngIII.DAO
 {
     public interface IDAO
     {
-        public void Save(EntidadeDominio entidade);
+        public void Salvar(EntidadeDominio entidade);        
+        public void Alterar(EntidadeDominio entidade);
+        public void Excluir(EntidadeDominio entidade);
+        public List<EntidadeDominio> Consultar(EntidadeDominio entidade);
     }
 }
